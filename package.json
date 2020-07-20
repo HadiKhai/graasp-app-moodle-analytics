@@ -39,6 +39,7 @@
     "prestart:api": "cat data/default.json > data/db.json",
     "build": "run-s build:react",
     "build:react": "react-scripts build",
+    "build:bundle": "webpack --config webpack.config.js --mode=production",
     "build:local": "env-cmd -f ./.env.local yarn build",
     "build:dev": "env-cmd -f ./.env.dev yarn build",
     "build:prod": "env-cmd -f ./.env.prod yarn build",
