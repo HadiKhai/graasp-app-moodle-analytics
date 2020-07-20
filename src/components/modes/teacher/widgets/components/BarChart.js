@@ -15,9 +15,7 @@ const BarChart = ({
   values,
   maxTicks,
 }) => {
-  console.log(data, keys);
   const [size, setSize] = useState(0);
-
   function updateSize() {
     if (document.getElementById(id)) {
       const height = document.getElementById(id).clientHeight;

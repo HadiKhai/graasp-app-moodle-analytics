@@ -34,15 +34,15 @@ const allowedVerbs = [
   'started',
   'ended',
   'updated',
+  'shown',
   'uploaded',
 ];
 const VerbBarChart = (content, from, to) => {
   const dateRange = buildDateRange(from, to);
   let data = combineContents(content);
-  const dataFormat = createDataForBarChart(dateRange, allowedVerbs, DATE);
-  data = fillDataForBarChart(data, dataFormat);
+  const formattedData = createDataForBarChart(dateRange, allowedVerbs, DATE);
+  data = fillDataForBarChart(data, formattedData);
   data = changeDateFormatForBarChart(data);
-  console.log(data);
   return data;
 };
 

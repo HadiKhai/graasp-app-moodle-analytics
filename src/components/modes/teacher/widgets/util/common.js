@@ -81,17 +81,17 @@ export const Occurrence = (actions, property, attributes) => {
 
 export const createDataForBarChart = (key, value, property) => {
   const data = [];
-  key.forEach((e) => {
+  // create an object where each key is created linked to a property and assigned to it a set of values
+  key.forEach((keyEntry) => {
     const Obj = {};
-    Obj[property] = e;
-
+    Obj[property] = keyEntry;
+    // after creating the key, add the values to this key with an initial value 0
     value.forEach((v) => {
       Obj[v] = 0;
     });
-
+    // add the object to the array of data
     data.push(Obj);
   });
-
   return data;
 };
 
@@ -99,15 +99,14 @@ export const changeDateFormat = (date) => {
   return moment(date).format('DD/MM');
 };
 
-export const changeDateFormatForBarChart = (arr) => {
-  const newArr = [...arr];
-
-  newArr.forEach((e) => {
+export const changeDateFormatForBarChart = (dataArray) => {
+  const updatedDataArray = [...dataArray];
+  updatedDataArray.forEach((e) => {
     const { date } = e;
-
+    // for each object in the data array take the date and change its format
     e.date = changeDateFormat(date);
   });
-  return newArr;
+  return updatedDataArray;
 };
 
 export const changeDateFormatForArray = (arr) => {
@@ -134,19 +133,24 @@ export const nbOfTicks = (
   return tick;
 };
 
+function isActionInRange(data, timecreated) {
+  const correspondingObject = data.find(
+    (obj) => obj.date === new Date(timecreated).toLocaleDateString(),
+  );
+  return correspondingObject;
+}
+
 export const fillDataForBarChart = (actions, dataFormat) => {
-  const data = dataFormat;
+  // take all the actions and the dataFormat, and loop throughout all actions
   actions.forEach((e) => {
     const { timecreated, action } = e;
-    const correspondingObject = data.find(
-      (obj) => obj.date === new Date(timecreated).toLocaleDateString(),
-    );
-
+    const correspondingObject = isActionInRange(dataFormat, timecreated);
+    // if this action occurred in this range increment the corresponding value
     if (action && correspondingObject) {
       correspondingObject[action] += 1;
     }
   });
-  return data;
+  return dataFormat;
 };
 
 export const combineContents = (listOfContent) => {
