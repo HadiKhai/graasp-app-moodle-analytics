@@ -6,11 +6,10 @@ import { withStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
 import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
-
 import './TeacherView.css';
 import { getUsers } from '../../../actions';
-
 import CourseDate from './widgets/CourseDate';
+import ActionBarChart from './widgets/ActionBarChart';
 
 export class TeacherView extends PureComponent {
   static propTypes = {
@@ -56,6 +55,14 @@ export class TeacherView extends PureComponent {
               Weeks
             </Typography>
             <CourseDate />
+          </Paper>
+        </Grid>
+        <Grid>
+          <Paper className={classes.paper}>
+            <Typography className={classes.title} gutterBottom>
+              Actions
+            </Typography>
+            <ActionBarChart />
           </Paper>
         </Grid>
       </div>
