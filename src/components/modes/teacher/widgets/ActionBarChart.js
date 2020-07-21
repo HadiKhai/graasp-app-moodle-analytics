@@ -1,5 +1,7 @@
 import React from 'react';
 import KeyedDatePicker from '../../../common/KeyedDatePicker';
+import VerbBarChart from './containers/VerbBarChart';
+import { VERB_BAR_CHART_DAT_PICKER_ID } from './types';
 
 const ActionBarChart = () => {
   const initialState = {
@@ -9,8 +11,9 @@ const ActionBarChart = () => {
 
   return (
     <div>
+      <VerbBarChart />
       <KeyedDatePicker
-        id="VERB_BAR_CHART_DAT_PICKER_ID"
+        id={VERB_BAR_CHART_DAT_PICKER_ID}
         initialValue={initialState}
       />
     </div>
