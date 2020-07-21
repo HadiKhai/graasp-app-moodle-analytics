@@ -1,4 +1,5 @@
-import React from 'react';
+import React, { useLayoutEffect } from 'react';
+import { useDispatch } from 'react-redux';
 import PropTypes from 'prop-types';
 import ReactGa from 'react-ga';
 import { I18nextProvider } from 'react-i18next';
@@ -20,6 +21,7 @@ import {
   REACT_APP_GRAASP_DEVELOPER_ID,
   REACT_APP_VERSION,
 } from '../config/env';
+import updateWindowSize from '../actions/windowSize';
 
 ReactGa.initialize(REACT_APP_GOOGLE_ANALYTICS_ID);
 ReactGa.ga(
@@ -58,6 +60,19 @@ const theme = createMuiTheme({
 });
 
 const Root = ({ classes }) => {
+  const dispatch = useDispatch();
+
+  function updateSize() {
+    const width = window.innerWidth;
+    dispatch(updateWindowSize(width));
+  }
+
+  useLayoutEffect(() => {
+    window.addEventListener('resize', updateSize);
+    updateSize();
+    return () => window.removeEventListener('resize', updateSize);
+  }, []);
+
   return (
     <div className={classes.root}>
       <MuiThemeProvider theme={theme}>
