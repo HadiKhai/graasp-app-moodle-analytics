@@ -16,6 +16,7 @@ const BarChart = ({
   values,
   maxTicks,
 }) => {
+  console.log(data, keys, indexBy);
   const [hiddenKeys, setHiddenKeys] = useState([]);
 
   const toggle = (d) => {

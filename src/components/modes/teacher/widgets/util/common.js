@@ -69,7 +69,7 @@ export const Occurrence = (actions, property, attributes) => {
       entry = entry.slice(0, 10);
     }
 
-    if (entry && !data.includes(entry) && !condition.includes(entry)) {
+    if (entry && !data.includes(entry) && condition.includes(entry)) {
       data.push(entry);
     }
   });
@@ -84,7 +84,10 @@ export const createDataForBarChart = (key, value, property) => {
   // create an object where each key is created linked to a property and assigned to it a set of values
   key.forEach((keyEntry) => {
     const Obj = {};
-    Obj[property] = keyEntry;
+    property.map((prop) => {
+      Obj[prop] = keyEntry;
+      return Obj;
+    });
     // after creating the key, add the values to this key with an initial value 0
     value.forEach((v) => {
       Obj[v] = 0;
@@ -149,6 +152,46 @@ export const fillDataForBarChart = (actions, dataFormat) => {
     if (action && correspondingObject) {
       correspondingObject[action] += 1;
     }
+  });
+  return dataFormat;
+};
+
+function isActionInTarget(dataFormat, target) {
+  return dataFormat.find((actionObj) => actionObj.target === target);
+}
+
+const isActionInTheRightContext = (
+  action,
+  dateRange,
+  timecreated,
+  dataFormat,
+  target,
+) => {
+  // check if the action occurred in the right range
+  if (dateRange.includes(new Date(timecreated).toLocaleDateString())) {
+    // check if the action was done in the right target
+    const actionObject = isActionInTarget(dataFormat, target);
+    if (actionObject) {
+      actionObject[action] += 1;
+    }
+  }
+};
+
+export const fillDataForBarChartPerTarget = (
+  actions,
+  dataFormat,
+  dateRange,
+) => {
+  // take all the actions and the dataFormat, and loop throughout all actions
+  actions.forEach((e) => {
+    const { timecreated, action, target } = e;
+    isActionInTheRightContext(
+      action,
+      dateRange,
+      timecreated,
+      dataFormat,
+      target,
+    );
   });
   return dataFormat;
 };

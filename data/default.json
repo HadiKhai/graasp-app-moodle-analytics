@@ -154,6 +154,32 @@
             "role": "norole",
             "relateduserid": null,
             "courseid": 2,
+            "timecreated": "7/21/2020, 2:38:38 PM"
+          },
+          {
+            "action": "created",
+            "target": "course_section",
+            "crud": "c",
+            "contextlevel": 50,
+            "edulevel": 0,
+            "eventname": "\\core\\event\\enrol_instance_created",
+            "userid": 2,
+            "role": "norole",
+            "relateduserid": null,
+            "courseid": 2,
+            "timecreated": "7/21/2020, 2:38:38 PM"
+          },
+          {
+            "action": "created",
+            "target": "enrol_instance",
+            "crud": "c",
+            "contextlevel": 50,
+            "edulevel": 0,
+            "eventname": "\\core\\event\\enrol_instance_created",
+            "userid": 2,
+            "role": "norole",
+            "relateduserid": null,
+            "courseid": 2,
             "timecreated": "7/8/2020, 2:38:38 PM"
           },
           {

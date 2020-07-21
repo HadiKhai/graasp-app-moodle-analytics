@@ -11,7 +11,7 @@ import {
   nbOfTicks,
   changeDateFormatForBarChart,
 } from '../util';
-import { DATE, VERB_BAR_CHART_DAT_PICKER_ID } from '../types';
+import { DATE, VERB_BAR_CHART_DAY_PICKER_ID_PER_TIME } from '../types';
 
 const colors = {
   created: '#decaff',
@@ -40,7 +40,7 @@ const allowedVerbs = [
 const VerbBarChart = (content, from, to) => {
   const dateRange = buildDateRange(from, to);
   let data = combineContents(content);
-  const formattedData = createDataForBarChart(dateRange, allowedVerbs, DATE);
+  const formattedData = createDataForBarChart(dateRange, allowedVerbs, [DATE]);
   data = fillDataForBarChart(data, formattedData);
   data = changeDateFormatForBarChart(data);
   return data;
@@ -54,8 +54,8 @@ const mapStateToProps = ({
   return {
     data: VerbBarChart(
       content,
-      fromDate(chartDataById, VERB_BAR_CHART_DAT_PICKER_ID),
-      toDate(chartDataById, VERB_BAR_CHART_DAT_PICKER_ID),
+      fromDate(chartDataById, VERB_BAR_CHART_DAY_PICKER_ID_PER_TIME),
+      toDate(chartDataById, VERB_BAR_CHART_DAY_PICKER_ID_PER_TIME),
     ),
     keys: allowedVerbs,
     colors,
@@ -64,8 +64,8 @@ const mapStateToProps = ({
     yAxis,
     values: changeDateFormatForArray(
       buildDateRange(
-        fromDate(chartDataById, VERB_BAR_CHART_DAT_PICKER_ID),
-        toDate(chartDataById, VERB_BAR_CHART_DAT_PICKER_ID),
+        fromDate(chartDataById, VERB_BAR_CHART_DAY_PICKER_ID_PER_TIME),
+        toDate(chartDataById, VERB_BAR_CHART_DAY_PICKER_ID_PER_TIME),
       ),
     ),
     maxTicks: nbOfTicks([4, 7, 12], [800, 1200, 1920], windowSize),
