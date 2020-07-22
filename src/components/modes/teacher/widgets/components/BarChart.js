@@ -68,7 +68,7 @@ const BarChart = ({
       anchor: 'top-right',
       direction: 'column',
       justify: false,
-      translateX: 121,
+      translateX: 100,
       translateY: 0,
       itemWidth: 84,
       itemHeight: 20,
@@ -143,7 +143,7 @@ const BarChart = ({
               anchor: 'top-right',
               direction: 'column',
               justify: false,
-              translateX: 121,
+              translateX: 100,
               translateY: 0,
               itemWidth: 84,
               itemHeight: 20,
@@ -186,8 +186,13 @@ BarChart.propTypes = {
   indexBy: PropTypes.string.isRequired,
   xAxis: PropTypes.string.isRequired,
   yAxis: PropTypes.string.isRequired,
-  values: PropTypes.arrayOf(PropTypes.string).isRequired,
-  maxTicks: PropTypes.number.isRequired,
+  values: PropTypes.arrayOf(PropTypes.string),
+  maxTicks: PropTypes.number,
+};
+
+BarChart.defaultProps = {
+  values: [],
+  maxTicks: 0,
 };
 
 export default BarChart;

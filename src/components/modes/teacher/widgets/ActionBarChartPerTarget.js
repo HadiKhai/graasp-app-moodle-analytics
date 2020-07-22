@@ -1,9 +1,9 @@
 import React from 'react';
 import KeyedDatePicker from '../../../common/KeyedDatePicker';
-import VerbBarChart from './containers/VerbBarChart';
-import { VERB_BAR_CHART_DAY_PICKER_ID_PER_TIME } from './types';
+import { VERB_LINE_CHART_DAY_PICKER_ID_PER_TARGET } from './types';
+import VerbBarChartPerTarget from './containers/VerbBarChartPerTarget';
 
-const ActionBarChart = () => {
+const ActionBarChartPerTarget = () => {
   const initialState = {
     from: new Date(new Date(Date.now()).toLocaleDateString()),
     to: new Date(new Date(Date.now()).toLocaleDateString()),
@@ -11,13 +11,13 @@ const ActionBarChart = () => {
 
   return (
     <div>
-      <VerbBarChart />
+      <VerbBarChartPerTarget />
       <KeyedDatePicker
-        id={VERB_BAR_CHART_DAY_PICKER_ID_PER_TIME}
+        id={VERB_LINE_CHART_DAY_PICKER_ID_PER_TARGET}
         initialValue={initialState}
       />
     </div>
   );
 };
 
-export default ActionBarChart;
+export default ActionBarChartPerTarget;

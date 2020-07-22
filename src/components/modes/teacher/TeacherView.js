@@ -10,6 +10,7 @@ import './TeacherView.css';
 import { getUsers } from '../../../actions';
 import CourseDate from './widgets/CourseDate';
 import ActionBarChart from './widgets/ActionBarChart';
+import ActionBarChartPerTarget from './widgets/ActionBarChartPerTarget';
 
 export class TeacherView extends PureComponent {
   static propTypes = {
@@ -57,13 +58,23 @@ export class TeacherView extends PureComponent {
             <CourseDate />
           </Paper>
         </Grid>
-        <Grid>
-          <Paper className={classes.paper}>
-            <Typography className={classes.title} gutterBottom>
-              Actions
-            </Typography>
-            <ActionBarChart />
-          </Paper>
+        <Grid container>
+          <Grid sm={6}>
+            <Paper className={classes.paper}>
+              <Typography className={classes.title} gutterBottom>
+                Actions Per Day
+              </Typography>
+              <ActionBarChart />
+            </Paper>
+          </Grid>
+          <Grid sm={6}>
+            <Paper className={classes.paper}>
+              <Typography className={classes.title} gutterBottom>
+                Actions Per Target
+              </Typography>
+              <ActionBarChartPerTarget />
+            </Paper>
+          </Grid>
         </Grid>
       </div>
     );
