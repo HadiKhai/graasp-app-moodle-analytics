@@ -6,18 +6,20 @@ import {
   fromDate,
   toDate,
   createDataForBarChart,
-  changeDateFormatForArray,
-  nbOfTicks,
   Occurrence,
   fillDataForBarChartPerTarget,
 } from '../util';
 import { TARGET, VERB_LINE_CHART_DAY_PICKER_ID_PER_TARGET } from '../types';
 
 const colors = {
-  course: '#decaff',
-  course_module: '#BBAAFF',
-  discussion: '#988BFF',
-  course_section: '#756DF4',
+  created: '#decaff',
+  assigned: '#BBAAFF',
+  viewed: '#988BFF',
+  started: '#756DF4',
+  shown: '#decaff',
+  ended: '#BBAAFF',
+  updated: '#988BFF',
+  uploaded: '#756DF4',
 };
 
 const xAxis = TARGET;
@@ -54,7 +56,6 @@ const VerbBarChartPerTarget = (content, from, to) => {
 const mapStateToProps = ({
   appInstanceResources: { content },
   chartDataById,
-  windowSize: { windowSize },
 }) => {
   return {
     data: VerbBarChartPerTarget(
@@ -62,18 +63,11 @@ const mapStateToProps = ({
       fromDate(chartDataById, VERB_LINE_CHART_DAY_PICKER_ID_PER_TARGET),
       toDate(chartDataById, VERB_LINE_CHART_DAY_PICKER_ID_PER_TARGET),
     ),
-    keys: allowedTargets,
+    keys: allowedVerbs,
     colors,
     indexBy: TARGET,
     xAxis,
     yAxis,
-    values: changeDateFormatForArray(
-      buildDateRange(
-        fromDate(chartDataById, VERB_LINE_CHART_DAY_PICKER_ID_PER_TARGET),
-        toDate(chartDataById, VERB_LINE_CHART_DAY_PICKER_ID_PER_TARGET),
-      ),
-    ),
-    maxTicks: nbOfTicks([4, 7, 12], [800, 1200, 1920], windowSize),
   };
 };
 

@@ -34,15 +34,27 @@ export const xTickValues = (values, tickCount) => {
 export const HEIGHT = 400;
 export const WIDTH = '100%';
 export const MARGIN = { top: 50, right: 110, bottom: 60, left: 60 };
-export const X_AXIS = (legend, values, tickCount) => ({
-  tickSize: 5,
-  tickPadding: 5,
-  tickRotation: 0,
-  legend: `${legend}`,
-  legendPosition: 'middle',
-  legendOffset: 45,
-  tickValues: xTickValues(values, tickCount),
-});
+export const X_AXIS = (legend, values, tickCount) => {
+  if (values.length > 0) {
+    return {
+      tickSize: 5,
+      tickPadding: 5,
+      tickRotation: 0,
+      legend: `${legend}`,
+      legendPosition: 'middle',
+      legendOffset: 45,
+      tickValues: xTickValues(values, tickCount),
+    };
+  }
+  return {
+    tickSize: 5,
+    tickPadding: 5,
+    tickRotation: 0,
+    legend: `${legend}`,
+    legendPosition: 'middle',
+    legendOffset: 45,
+  };
+};
 
 export const Y_AXIS = (legend, data) => {
   if (legend && data) {
